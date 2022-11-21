@@ -1,9 +1,9 @@
-
+import './index.css';
 
 function App() {
   return (
-    <div>
-      hi
+    <div className="text-3xl font-bold underline">
+    hello
     </div>
   );
 }
