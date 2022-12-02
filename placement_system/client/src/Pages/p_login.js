@@ -4,7 +4,7 @@ export default function PcLogin() {
   const navigate = useNavigate();
 
   return (
-    <div className="">
+    <div className="bg-red-100">
       <div className="float-right font-semibold tracking-tight leading-none font-serif text-transparent bg-clip-text bg-gradient-to-tr from-black to-pink-600 mr-5 mt-4 flex flex-row ">
           <div className="">
             <img
@@ -17,7 +17,7 @@ export default function PcLogin() {
           </div>
         </div>
       <div className="relative w-full h-screen flex items-center justify-center flex-col">
-      <form className="max-w-[700px] w-full mx-auto  p-8 border  rounded-lg shadow-slate-600 shadow-2xl flex justify-center items-center flex-col h-80">
+      <form className="bg-white max-w-[700px] w-full mx-auto  p-8 border  rounded-lg shadow-slate-600 shadow-2xl flex justify-center items-center flex-col h-80">
         <h2 className=" p-2 text-center font-extrabold tracking-tight leading-none pb-6 text-4xl font-serif text-transparent bg-clip-text bg-gradient-to-tr from-black to-pink-600">
           Placement Cell Login
         </h2>

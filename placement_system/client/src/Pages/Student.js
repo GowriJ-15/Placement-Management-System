@@ -6,7 +6,7 @@ function StudentSignup({
   name,setName,email,setEmail,password,setPassword,admno,setAdmno,cgpa,setCgpa,backlog,setBacklog
 }) {
   const register = () => {
-    Axios.post("http://localhost:3001/register", {
+    Axios.post("http://localhost:3001/auth/register", {
      name : name,
      email : email,
       password: password,

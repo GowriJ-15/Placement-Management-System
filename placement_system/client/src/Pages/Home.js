@@ -4,7 +4,7 @@ function Home() {
   const navigate = useNavigate();
 
   return (
-    <div className="relative w-full h-max bg-fixed bg-cover bg-[url('https://wallpaper.dog/large/20407834.jpg')] ">
+    <div className="relative w-full h-max bg-fixed bg-cover bg-[url('https://static-prod.adweek.com/wp-content/uploads/2018/08/search-keywords-jobs-PAGE-2018.gif')] ">
       <div className="flex flex-col items-center justify-center h-screen bg-opacity-50">
         <div>
           <button

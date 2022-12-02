@@ -9,7 +9,7 @@ function S_details() {
   const [id, setId] = useState("");
 
   //useEffect(() => {
-  //Axios.get("http://localhost:3001/ifUserEligible", {
+  //Axios.get("http://localhost:3001/ccgpa/ifUserEligible", {
   //id: id,
   //}).then((response) => {
   //setcList(response.data);
