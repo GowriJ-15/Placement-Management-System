@@ -1,8 +1,18 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Axios from "axios";
 
 
-function CompanySignup() {
+function CompanySignup({cname,setcname,ccgpa,setccgpa,cid,setcid}) {
+  const companyregister = () => {
+    Axios.post("http://localhost:3001/companyregister", {
+     cname:cname,
+     cid:cid,
+     ccgpa:ccgpa
+    }).then((response) => {
+      console.log(response);
+    });
+  };
   const navigate = useNavigate();
   return (
     <div>
@@ -34,6 +44,9 @@ function CompanySignup() {
                   <input
                     className="border-relative bg-gray-100 p-1 border rounded-lg dark:border-gray-300 outline-none shadow-lg mx-1 w-48"
                     type="text"
+                    onChange={(e)=>{
+                      setcname(e.target.value);
+                    }}
                   />
                 </div>
 
@@ -42,6 +55,10 @@ function CompanySignup() {
                   <input
                     className="border-relative shadow-lg bg-gray-100 p-1 border rounded-lg dark:border-gray-300 outline-none mx-8 px-2 w-48"
                     type="number"
+                    step="any"
+                    onChange={(e)=>{
+                      setcid(e.target.value);
+                    }}
                   />
                 </div>
                 <div className="flex flex-row mb-4 pt-2">
@@ -49,6 +66,9 @@ function CompanySignup() {
                   <input
                     className="border-relative shadow-lg bg-gray-100 p-1 border rounded-lg dark:border-gray-300 outline-none mx-3 px-1 w-48"
                     type="number"
+                    onChange={(e)=>{
+                      setccgpa(e.target.value);
+                    }}
                     required
                   />
                 </div>
@@ -56,6 +76,7 @@ function CompanySignup() {
               <div>
                 <div className="flex justify-center items-center pt-4">
                   <button
+                    onClick={companyregister}
                     type="submit"
                     className=" px-8 py-1 bg-gradient-to-tr from-black to-pink-600 relative text-white border  rounded content-center ease-out hover:translate-y-1 transition-all font-semibold font-serif"
                   >

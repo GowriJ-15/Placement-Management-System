@@ -3,19 +3,16 @@ import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function StudentSignup({
-  usernameReg,
-  setUsernameReg,
-  username,
-  setUsername,
-  password,
-  setPassword,
-  passwordReg,
-  setPasswordReg,
+  name,setName,email,setEmail,password,setPassword,admno,setAdmno,cgpa,setCgpa,backlog,setBacklog
 }) {
   const register = () => {
     Axios.post("http://localhost:3001/register", {
-      username: usernameReg,
-      password: passwordReg,
+     name : name,
+     email : email,
+      password: password,
+      admno:admno,
+      cgpa:cgpa,
+      backlog:backlog
     }).then((response) => {
       console.log(response);
     });
@@ -60,6 +57,9 @@ function StudentSignup({
                       <input
                         className="border-relative bg-gray-100 p-1 border rounded-lg dark:border-gray-300 outline-none shadow-lg"
                         type="text"
+                        onChange={(e)=>{
+                          setName(e.target.value);
+                        }}
                       />
                     </div>
 
@@ -69,7 +69,7 @@ function StudentSignup({
                         className="border-relative shadow-lg bg-gray-100 p-1 border rounded-lg dark:border-gray-300 outline-none"
                         type="email"
                         onChange={(e) => {
-                          setUsernameReg(e.target.value);
+                          setEmail(e.target.value);
                         }}
                       />
                     </div>
@@ -79,7 +79,7 @@ function StudentSignup({
                         className="border-relative shadow-lg bg-gray-100 p-1 border rounded-lg dark:border-gray-300 outline-none appearance-none"
                         type="password"
                         onChange={(e) => {
-                          setUsernameReg(e.target.value);
+                          setPassword(e.target.value);
                         }}
                       />
                     </div>
@@ -93,6 +93,10 @@ function StudentSignup({
                       <input
                         className="border-relative shadow-lg bg-gray-100 p-1 border rounded-lg dark:border-gray-300 outline-none"
                         type="number"
+                        step="any"
+                        onChange={(e)=>{
+                          setAdmno(e.target.value)
+                        }}
                       />
                     </div>
                     <div className="flex flex-col mb-4 w-72">
@@ -102,6 +106,9 @@ function StudentSignup({
                         type="number"
                         step="any"
                         required
+                        onChange={(e)=>{
+                          setCgpa(e.target.value)
+                        }}
                       />
                     </div>
 
@@ -110,6 +117,9 @@ function StudentSignup({
                       <input
                         className="border-relative shadow-lg bg-gray-100 p-1 border rounded-lg dark:border-gray-300 outline-none"
                         type="number"
+                        onChange={(e)=>{
+                          setBacklog(e.target.value)
+                        }}
                       />
                     </div>
                   </div>

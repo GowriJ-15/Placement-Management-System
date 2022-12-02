@@ -44,6 +44,7 @@ export default function StudentLogin({}) {
             <div className="flex justify-center items-center flex-col">
               <div className="p-4">
                 <button
+                  onClick={()=>navigate("/student_details")}
                   type="submit"
                   className=" px-8 py-1 bg-gradient-to-tr from-black to-pink-600  relative text-white border rounded content-center ease-out hover:translate-y-1 transition-all font-semibold font-serif"
                 >
