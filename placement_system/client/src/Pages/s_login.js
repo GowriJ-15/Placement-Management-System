@@ -1,13 +1,42 @@
+import axios from "axios";
+import { useState, useEffect, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 
 export default function StudentLogin({}) {
+  const [loginStatus, setLoginStatus] = useState("");
+  const [username, setUsername] = useState("");
   const navigate = useNavigate();
+  const [password, setPassword] = useState("");
+  axios.defaults.withCredentials = true;
+  const login = () => {
+    axios
+      .post("http://localhost:3001/login", {
+        username: username,
+
+        password: password,
+      })
+      .then((response) => {
+        if (response.data.message) {
+          setLoginStatus(response.data.message);
+        } else {
+          setLoginStatus(response.data[0].username);
+        }
+      });
+  };
+
+  useEffect(() => {
+    axios.get("http://localhost:3001/login").then((response) => {
+      if (response.data.loggedIn == true) {
+        setLoginStatus(response.data.user[0].username);
+      }
+    });
+  }, []);
 
   return (
     <div className="">
       <div>
-        <Navbar/>
+        <Navbar />
       </div>
 
       <div className="relative w-full float-right mt-7">
@@ -21,6 +50,10 @@ export default function StudentLogin({}) {
             <input
               className="border-relative shadow-lg bg-gray-100 p-1 border rounded-lg dark:border-gray-300 outline-none"
               type="email"
+              name="username"
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
             />
           </div>
 
@@ -30,6 +63,9 @@ export default function StudentLogin({}) {
               className="border-relative shadow-lg bg-gray-100 p-1 border rounded-lg dark:border-gray-300 outline-none"
               type="password"
               name="password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
             />
           </div>
 
@@ -37,7 +73,7 @@ export default function StudentLogin({}) {
             <div className="flex justify-center items-center flex-col">
               <div className="p-4">
                 <button
-                  onClick={()=>navigate("/student_details")}
+                  onClick={login}
                   type="submit"
                   className=" px-8 py-1 mt-3 bg-gradient-to-tr from-black to-blue-600  relative text-white border rounded content-center ease-out hover:translate-y-1 transition-all font-semibold font-serif"
                 >
@@ -53,7 +89,8 @@ export default function StudentLogin({}) {
                       onClick={() => navigate("/student_signup")}
                       className="float:right hover:text-pink-900 p-2 cursor-pointer"
                     >
-                      Signup</a>
+                      Signup
+                    </a>
                   </u>
                 </p>
               </div>

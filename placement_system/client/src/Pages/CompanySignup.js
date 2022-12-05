@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+
 import Axios from "axios";
 import Navbar from "../Components/Navbar";
 
@@ -13,7 +13,7 @@ function CompanySignup({ cname, setcname, ccgpa, setccgpa, cid, setcid }) {
       console.log(response);
     });
   };
-  const navigate = useNavigate();
+ 
   return (
     <div>
       <div className="">

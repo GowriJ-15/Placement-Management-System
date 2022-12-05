@@ -5,7 +5,7 @@ export default function Navbar() {
   const navigate = useNavigate();
 
   return (
-    <nav className="w-full bg-gradient-to-tr from-black to-blue-600 shadow">
+    <nav className="w-screen bg-gradient-to-tr from-black to-blue-600 shadow">
       <div className="justify-between md:items-center md:flex md:px-8">
         <div>
           <div className="flex items-center justify-between py-3 md:py-5 ">

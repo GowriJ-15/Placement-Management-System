@@ -29,6 +29,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/student_login" element={<StudentLogin/>} />
+          <Route path="/student_details" element={<S_details/>} />
           <Route path="/pc_login" element={<PcLogin />} />
           <Route
             path="/student_signup"
@@ -50,7 +51,7 @@ function App() {
             }
           />
           <Route path="/company_reg" element={<CompanySignup cname={cname} setcname={setcname} cid={cid} setcid={setcid} ccgpa={ccgpa} setccgpa={setccgpa} />} />
-          <Route path="/student_details" element={<S_details/>} />
+          
         </Routes>
       </Router>
           }
