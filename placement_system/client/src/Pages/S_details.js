@@ -1,19 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { Axios } from "axios";
+import axios from "axios";
 import Navbar from "../Components/Navbar";
 
-function S_details() {
+function S_details({userDetails}) {
 
-  const [cList, setcList] = useState([]);
-  const [id, setId] = useState("");
+  const [cList, setcList] = useState();
+  const [id, setId] = useState(0);
+  const [loading,setLoading] = useState(true)
+
+
+  useEffect(()=>{
+  // setTimeout(()=>{
+  //   console.log(userDetails)
+  //   
+  // },[3000])
+  setId(userDetails?.Admno)
+  console.log(userDetails?.Admno)
+
+  },[userDetails])
 
   useEffect(() => {
-  Axios.get("http://localhost:3001/ccgpa/ifUserEligible", {
-  id: id,
-  }).then((response) => {
-  setcList(response.data);
-  });
-  }, []);
+  axios.get(`http://localhost:3001/ccgpa/${id}`).then((response) => {
+  setcList(response.data.data);
+  console.log(response.data.data)
+  })
+  }, [id]);
 
 
 
@@ -64,7 +75,7 @@ function S_details() {
                 </div>
 
                 <div className="font-bold pt-3 tracking-tight leading-none font-serif text-transparent bg-clip-text bg-gradient-to-tr from-black to-blue-800 flex flex-col mb-8 ">
-                  {cList.map((val) => {
+                  {cList && cList?.map((val) => {
                     return (
                       <div className="flex justify-center flex-row pt-2 content-start">
                         <div className=" pt-3 pb-3 ">

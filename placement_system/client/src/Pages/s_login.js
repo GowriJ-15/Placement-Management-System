@@ -3,34 +3,36 @@ import { useState, useEffect, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 
-export default function StudentLogin({}) {
+export default function StudentLogin({setUserDetails}) {
   const [loginStatus, setLoginStatus] = useState("");
   const [username, setUsername] = useState("");
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
+
+  const [user,setUser] = useState({
+    email:"",
+    password:""
+  })
   axios.defaults.withCredentials = true;
-  const login = () => {
-    axios
-      .post("http://localhost:3001/login", {
-        username: username,
 
-        password: password,
-      })
-      .then((response) => {
-        if (response.data.message) {
-          setLoginStatus(response.data.message);
-        } else {
-          setLoginStatus(response.data[0].username);
-        }
-      });
-  };
+  const LoginFunction =(e)=>{
+  e.preventDefault()
+  axios.post('http://localhost:3001/auth/login',user).then(res=>{
+    setUserDetails(res.data.data[0])
+    console.log(res.data.data[0])
+    if(res.data.success)(navigate('/student_details'))
+  }).catch((err)=>console.log(err))
+  console.log(user)
+  
+   
+  }
+  const handleChange = (e)=>{
+    const {name,value} = e.target;
 
+    setUser({...user,[name]:value})
+  }
   useEffect(() => {
-    axios.get("http://localhost:3001/login").then((response) => {
-      if (response.data.loggedIn == true) {
-        setLoginStatus(response.data.user[0].username);
-      }
-    });
+    
   }, []);
 
   return (
@@ -49,11 +51,9 @@ export default function StudentLogin({}) {
             <label className="font-bold p-3">Email ID</label>
             <input
               className="border-relative shadow-lg bg-gray-100 p-1 border rounded-lg dark:border-gray-300 outline-none"
-              type="email"
-              name="username"
-              onChange={(e) => {
-                setUsername(e.target.value);
-              }}
+              type="text"
+              name="email"
+              onChange={handleChange}
             />
           </div>
 
@@ -63,9 +63,7 @@ export default function StudentLogin({}) {
               className="border-relative shadow-lg bg-gray-100 p-1 border rounded-lg dark:border-gray-300 outline-none"
               type="password"
               name="password"
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
+              onChange={handleChange}
             />
           </div>
 
@@ -73,7 +71,7 @@ export default function StudentLogin({}) {
             <div className="flex justify-center items-center flex-col">
               <div className="p-4">
                 <button
-                  onClick={login}
+                  onClick={LoginFunction}
                   type="submit"
                   className=" px-8 py-1 mt-3 bg-gradient-to-tr from-black to-blue-600  relative text-white border rounded content-center ease-out hover:translate-y-1 transition-all font-semibold font-serif"
                 >

@@ -19,6 +19,8 @@ function App() {
   const [cname,setcname] = useState("");
   const [cid,setcid] = useState("");
   const [ccgpa,setccgpa] = useState("");
+
+  const [userDetails,setUserDetails] = useState([])
   
 
 
@@ -28,8 +30,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/student_login" element={<StudentLogin/>} />
-          <Route path="/student_details" element={<S_details/>} />
+          <Route path="/student_login" element={<StudentLogin setUserDetails={setUserDetails}/>} />
+          <Route path="/student_details" element={<S_details userDetails={userDetails}/>} />
           <Route path="/pc_login" element={<PcLogin />} />
           <Route
             path="/student_signup"
